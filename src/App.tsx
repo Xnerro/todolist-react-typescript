@@ -31,7 +31,7 @@ export const App = () => {
 
     const toggleStatus = (target: Todo) => {
         const newTodo = todo.map((x) => {
-            if (x === target) {
+            if (x === target && x.status !== true) {
                 return {
                     ...x,
                     status: !x.status,
@@ -54,16 +54,27 @@ export const App = () => {
     return (
         <ChakraProvider theme={theme}>
             <Box
-                w="100%"
-                minW="100vh"
+                maxW="100%"
                 textAlign="center"
                 fontSize="xl"
                 display="flex"
                 justifyContent="center"
+                minH="100vh"
             >
-                <Box mt="10">
+                <Box
+                    mt="10"
+                    w="100%"
+                    display="flex"
+                    alignItems="center"
+                    flexDir="column"
+                >
                     <Heading>Todo List App</Heading>
-                    <VStack w="100%" align="self-start" mt="16">
+                    <VStack
+                        align="self-start"
+                        mt="16"
+                        alignItems="center"
+                        w="100%"
+                    >
                         {todo.map((x, i) => (
                             <TodoList
                                 key={i}
@@ -72,16 +83,19 @@ export const App = () => {
                                 todo={todo[i]}
                             />
                         ))}
-                        <HStack w="100%" pt="5">
+                        <HStack w="80%" pt="5" display="flex">
                             <Input
                                 w="100%"
                                 placeholder="new todo"
                                 onChange={(e) => setNewText(e.target.value)}
+                                fontSize={['1.5vh', '1.5vh', '1,5vw', '1.5vw']}
+                                h={['4vh', '4vh', '3vw', '3vw']}
                             />
                             <Button
+                                fontSize={['1.5vh', '1.5vh', '1,5vw', '1.5vw']}
+                                h={['4vh', '4vh', '3vw', '3vw']}
                                 onClick={() => {
                                     addTodos();
-                                    console.log(todo);
                                 }}
                             >
                                 Add
